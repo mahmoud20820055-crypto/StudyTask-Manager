@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    image: studytask-manager:latest
+    container_name: studytask-manager
+    ports:
+      - "${HOST_PORT:-8000}:8000"
+    environment:
+      PORT: 8000
+      DATABASE_PATH: /data/tasks.db
+    volumes:
+      - studytask-data:/data
+    restart: unless-stopped
+
+volumes:
+  studytask-data:
