@@ -150,6 +150,22 @@ curl http://localhost:8000/api/stats
 
 **Automated tests:** `make test`
 
+## Troubleshooting
+
+**`pip install` fails during the build with "Network is unreachable".**
+This can happen on WSL2 when containers on the default bridge network have no
+internet access. Build with the host network instead:
+
+```bash
+docker build --network=host -t studytask-manager .
+# or: make build NET=--network=host
+```
+
+**Port 8000 is already in use.** Map another host port, for example
+`-p 9000:8000`, and open <http://localhost:9000>.
+
+More details are in [`docs/notes.md`](docs/notes.md).
+
 ## Screenshots
 
 Screenshots of the build, the running container and the application are in
